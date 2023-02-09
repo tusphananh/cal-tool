@@ -1,4 +1,8 @@
-import { CaretRightOutlined, CopyOutlined } from "@ant-design/icons";
+import {
+  CaretRightOutlined,
+  CopyOutlined,
+  DownloadOutlined,
+} from "@ant-design/icons";
 import { Button, Card, Input, message, Space } from "antd";
 import { useState } from "react";
 import "./App.css";
@@ -150,6 +154,19 @@ function App() {
     }
   };
 
+  const downloadAsCsv = () => {
+    const blob = new Blob([output], { type: "text/csv" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.style.display = "none";
+    a.href = url;
+    a.download = "data.csv";
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+  };
+
   return (
     <div className="App">
       {contextHolder}
@@ -197,6 +214,13 @@ function App() {
               shape="round"
               icon={<CopyOutlined />}
               onClick={copyToClipboard}
+              disabled={!output}
+            />
+            <Button
+              type="primary"
+              shape="round"
+              icon={<DownloadOutlined />}
+              onClick={downloadAsCsv}
               disabled={!output}
             />
           </Space>
