@@ -36,23 +36,37 @@ function App() {
       };
     });
 
-    let result = "position\tsound\tpositive_median\tnegative_median\n";
-
-    rs.forEach((obj) => {
-      result +=
-        "\n" +
-        obj.position +
-        "\t" +
-        obj.sound +
-        "\t" +
-        obj.positiveMedian +
-        "\t" +
-        obj.negativeMedian;
-    });
-
     console.log("====================================");
-    console.log(result);
+    console.log(rs);
     console.log("====================================");
+
+    let result =
+      "position\tcold_negative\tcold_positive\tcoffee_negative\tcoffee_positive\tto_negative\tto_positive\ttalk_negative\ttalk_positive\tpack_negative\tpack_positive\tpassport_negative\tpack-sentence_negative\tpack-sentence_positive\ttalk-sentence_negative\ttalk-sentence_positive\tcold-sentence_negative\tcold-sentence_positive";
+
+    let count = 0;
+    for (let i = 0; i < rs.length / 9; i++) {
+      console.log("====================================");
+      console.log(count);
+      console.log("====================================");
+      result += `\n${rs[count].position}\t${rs[count].negativeMedian}\t${rs[count].positiveMedian}`;
+      count++;
+      result += `\t${rs[count].negativeMedian}\t${rs[count].positiveMedian}`;
+      count++;
+      result += `\t${rs[count].negativeMedian}\t${rs[count].positiveMedian}`;
+      count++;
+      result += `\t${rs[count].negativeMedian}\t${rs[count].positiveMedian}`;
+      count++;
+      result += `\t${rs[count].negativeMedian}\t${rs[count].positiveMedian}`;
+      count++;
+      result += `\t${rs[count].negativeMedian}\t${rs[count].positiveMedian}`;
+      count++;
+      result += `\t${rs[count].negativeMedian}\t${rs[count].positiveMedian}`;
+      count++;
+      result += `\t${rs[count].negativeMedian}\t${rs[count].positiveMedian}`;
+      count++;
+      result += `\t${rs[count].negativeMedian}\t${rs[count].positiveMedian}`;
+      count++;
+    }
 
     return result;
   };
